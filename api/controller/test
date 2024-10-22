@@ -1,0 +1,33 @@
+type CommandeProduit = {
+    product: string
+    quantity: number
+}
+
+type Product = {
+    name: string
+    quantity: number
+}
+
+function main() {
+const request: CommandeProduit[] = [{
+product: 'a', quantity: 1
+}, {
+product: 'b', quantity: 10
+}, 
+]
+
+for(const product of request) {
+    const stock = 5
+
+    if(stock < product.quantity) {
+        console.log(`Stock insuffisant pour le produit ${product.product}`)
+    } else {
+        console.log(`Stock suffisant pour le produit ${product.product}`)
+    }
+    const result = {
+        name: product.product,
+        quantityCommand: product.quantity,
+        quantityLivré: stock - product.quantity
+    }
+}
+}
