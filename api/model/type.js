@@ -1,6 +1,6 @@
 const Type = Object.freeze({
-    FOURNISSEUR: 'fournisseur',
-    CLIENT: 'client',
+    FOURNISSEUR: 'FOURNISSEUR',
+    CLIENT: 'CLIENT',
   });
   
   module.exports = Type;

@@ -46,8 +46,6 @@ app.use(logger('dev'));
   
   app.use('/', api)
 
-  // Middleware de gestion des erreurs
-  app.use(errorHandler);
   
   app.get('/', (req, res) => {
     res.json({ "message": "Bienvenue dans l'API de projet File Rouge" });

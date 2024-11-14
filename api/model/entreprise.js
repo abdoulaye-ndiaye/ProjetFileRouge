@@ -25,7 +25,7 @@ const EntrepriseSchema = new mongoose.Schema({
     },
     type : {
         type: String, 
-        enum: Object.values(UserRole), 
+        enum: Object.values(Type), 
         default: Type.FOURNISSEUR
     }
 }, {
