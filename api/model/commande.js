@@ -1,17 +1,17 @@
 const mongoose = require('mongoose');
 const status = require('./status');
+const Entreprise = require("./entreprise");
+const Produit = require("./produit")
 
 const CommandeSchema = new mongoose.Schema({
     client: {
-        type: Schema.Types.ObjectId,
-        ref: 'Client',
-        required: true
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: Entreprise 
     },
     produits: [{
-        produit: {
-            type: Schema.Types.ObjectId,
-            ref: 'Produit',
-            required: true
+        refArticle: {
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: Produit 
         },
         quantiteCommande: {
             type: Number,
@@ -31,6 +31,9 @@ const CommandeSchema = new mongoose.Schema({
         enum : Object.values(status),
         default: status.EN_ATTENTE
     }
-});
+},
+{ strict: false }
+);
+const Commande = mongoose.model('Commande', CommandeSchema);
 
-module.exports = mongoose.model('Commande', CommandeSchema);
+module.exports = Commande;

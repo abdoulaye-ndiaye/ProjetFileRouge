@@ -18,6 +18,18 @@ routes.delete("/delete-produit/:id", produitController.deleteProduit);
 routes.get("/produit-entreprise/:entrepriseId", produitController.getProduitsByEntreprise);
 routes.get("/produit-actifs", produitController.getProduitsActifs);
 
+// Controller Commande
+const commandeController = require('../controller/commande');
+
+routes.post("/commande", commandeController.envoyerCommande);
+routes.put("/commande-fournisseur/:id", commandeController.modifierCommandeFournisseur);
+routes.put("/commande-client/:id", commandeController.modifierCommandeClient);
+routes.get("/commande", commandeController.getAllCommandes);
+routes.get("/commande/:id", commandeController.getCommandeById);
+routes.delete("/commande/:id", commandeController.deleteCommande);
+routes.get("/commandes-client/:clientId", commandeController.getCommandesByClient);
+
+
 
 
 module.exports = routes;
