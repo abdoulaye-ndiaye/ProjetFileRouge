@@ -208,7 +208,7 @@ module.exports = {
           const produitExistant = commande.produits.find(p => p.produit.toString() === produit.refArticle);
           if (!produitExistant) {
             commande.produits.push({
-              produit: produit.refArticle,
+              produit: produit._id,
               quantiteCommande: produit.quantiteDisponible,
               quantitelivre: produit.quantiteDisponible
             });

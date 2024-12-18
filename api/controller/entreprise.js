@@ -1,3 +1,4 @@
+const { get } = require('mongoose');
 const Entreprise = require('../model/entreprise')
 
 module.exports = {
@@ -51,6 +52,36 @@ module.exports = {
             );
     
             res.status(200).send(updatedEntreprise); // Retourne l'entreprise mise à jour
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Erreur interne du serveur');
+        }
+    },
+    getAll: async (req, res) => {
+        try {
+            const entreprises = await Entreprise.find();
+            res.status(200).send(entreprises);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Erreur interne du serveur');
+        }
+    },
+    getById: async (req, res) => {
+        try {
+            const entreprise = await Entreprise.findById(req.params.id);
+            res.status(200).send(entreprise);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Erreur interne du serveur');
+        }
+    },
+    deleteEntreprise: async (req, res) => {
+        try {
+            const entreprise = await Entreprise.findByIdAndDelete(req.params.id);
+            if (!entreprise) {
+                return res.status(404).send('Entreprise non trouvée');
+            }
+            res.status(204).send();
         } catch (error) {
             console.error(error);
             res.status(500).send('Erreur interne du serveur');

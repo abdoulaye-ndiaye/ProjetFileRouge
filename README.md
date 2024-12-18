@@ -109,62 +109,13 @@ docker-compose --version
 
 Si vous ne voulez pas utiliser Docker Compose, vous pouvez aussi créer et gérer vos conteneurs manuellement avec Docker :
 
-### Construire l'image :
-```bash
-# Pour chaque service (api, client, fournisseur)
-docker build -t mon-api ./api
-docker build -t mon-client ./client
-docker build -t mon-fournisseur ./fournisseur
-```
-
-### Créer un réseau Docker :
-```bash
-docker network create mon-reseau-projet
-```
-
-### Lancer MongoDB :
-```bash
-docker run -d \
-  --name mongodb \
-  --network mon-reseau-projet \
-  -p 27017:27017 \
-  -v mongodb_data:/data/db \
-  mongo:latest
-```
-
-### Lancer les APIs :
-```bash
-# API
-docker run -d \
-  --name api \
-  --network mon-reseau-projet \
-  -p 3001:3001 \
-  -e MONGO_DB_URL=mongodb://mongodb:27017/projet-fileRouge \
-  -e PORT=3001 \
-  -e JWT_SECRET=CleJWTAPPLINDF \
-  mon-api
-
-# Client
-docker run -d \
-  --name client \
-  --network mon-reseau-projet \
-  -p 3002:3002 \
-  -e PORT_CLIENT=3002 \
-  mon-client
-
-# Fournisseur
-docker run -d \
-  --name fournisseur \
-  --network mon-reseau-projet \
-  -p 3000:3000 \
-  -e PORT_FOURNISSEUR=3000 \
-  mon-fournisseur
-```
-
 ## Commandes Utiles Docker:
-- Voir les conteneurs : `docker ps`
-- Arrêter un conteneur : `docker stop nom-conteneur`
-- Supprimer un conteneur : `docker rm nom-conteneur`
+- creer les conteneurs: `docker-compose up --build`
+- Arrêter les conteneurs actuels: `docker-compose down`
+- Reconstruire et redémarrer un seul service: `docker-compose up --build api`
+# Supprimer et recréer un conteneur
+`docker-compose rm -f api`
+`docker-compose up -d api`
 
 ## Services
 
